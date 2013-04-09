@@ -31,7 +31,7 @@ def login_user(request):
                 error = "نام کاربری شما فعال نیست "
         else:
             error = "نام کاربری و یا رمز عبور صحیح نیست"
-	#test
+	#test dfdfdf d fd
     return render_to_response('index.html', locals() ,context_instance=RequestContext(request))
 		
 def services(request):
