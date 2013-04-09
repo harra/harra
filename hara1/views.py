@@ -50,6 +50,10 @@ def login_user(request):
 def services(request):
     page_html_inc = 'services.html' 
     return render_to_response('index.html', locals() ,context_instance=RequestContext(request))
+		
+def reports(request):
+    page_html_inc = 'reports.html' 
+    return render_to_response('index.html', locals() ,context_instance=RequestContext(request))
 	
 def logout_user(request):
 	logout(request)

@@ -18,7 +18,7 @@
             	</div>
                 <ul class="navigation" style="font-family:BKoodakBold;font-weight:normal;" >
                     <li><a href="/logout_user/">خروج</a></li>
-                    <li><a {% ifequal  request.path '/system_manage/' %} class=selected {% endifequal %} id="/system_manage/" href="/system_manage/">مدیریت سیستم</a></li> 
+                    <li><a {% ifequal request.path '/system_manage/' %} class=selected {% endifequal %} id="/system_manage/" href="/system_manage/">مدیریت سیستم</a></li> 
                     <li><a {% ifequal request.path '/reports/' %} class=selected {% endifequal %} id="/reports/" href="/reports/">گزارش ها</a></li>
                     <li><a {% ifequal request.path '/services/' %} class=selected {% endifequal %} id="/services/" href="/services/">سرویس ها</a></li>
                     <li><a {% ifequal request.path '/' %} class=selected {% endifequal %} id="index" href="/?">صفحه اصلی</a></li>

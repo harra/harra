@@ -11,6 +11,7 @@ urlpatterns = patterns('',
    url(r'^login_user/$', 'hara1.views.login_user'),
    url(r'^services/$', 'hara1.views.services'),
    url(r'^system_manage/$', 'hara1.views.system_manage'),
+   url(r'^reports/$', 'hara1.views.reports'),
    
    url(r'^logout_user/$', 'hara1.views.logout_user'),
 
