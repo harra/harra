@@ -1,0 +1,20 @@
+<h2 style="font-family:BYekan;">{{name}}</h2>
+<div class="col_w240" style="padding:10% 35%;width:300px;" >
+		<font color=red> {{ error }} </font>
+		<form action="/login/" method="POST">{% csrf_token %}
+			<table>
+				<tr>
+					<td>نام کاربری:</td>
+					<td><input type="text" name="username" value="{{ username }}" class="input_field ltr"></td>
+				</tr>
+				<tr>
+					<td>رمز عبور:</td>
+					<td><input type="password" name="password" value="" class="input_field ltr"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="  ورود  " class="submit_button" ></td>
+				</tr>
+			</table>
+		</form>
+</div>
