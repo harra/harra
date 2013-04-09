@@ -8,10 +8,11 @@ from django.conf import settings
 
 urlpatterns = patterns('',
    url(r'^$', 'hara1.views.index'), 
-   url(r'^login/$', 'hara1.views.login_user'),
+   url(r'^login_user/$', 'hara1.views.login_user'),
    url(r'^services/$', 'hara1.views.services'),
+   url(r'^system_manage/$', 'hara1.views.system_manage'),
    
-   url(r'^logout/$', 'hara1.views.logout_user'),
+   url(r'^logout_user/$', 'hara1.views.logout_user'),
 
     # url(r'^$', 'hara1.views.home', name='home'),
     # url(r'^hara1/', include('hara1.foo.urls')),

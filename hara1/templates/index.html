@@ -17,11 +17,11 @@
                 	<h1><a href="/" target="_parent"><img src="/static/images/templatemo_logo.png" alt="free css template" /></a></h1>
             	</div>
                 <ul class="navigation" style="font-family:BKoodakBold;font-weight:normal;" >
-                    <li><a href="/logout/">خروج</a></li>
-                    <li><a href="#">مدیریت سیستم</a></li> 
-                    <li><a href="#">گزارش ها</a></li>
-                    <li><a href="/services/">سرویس ها</a></li>
-                    <li><a href="/?">صفحه اصلی</a></li>
+                    <li><a href="/logout_user/">خروج</a></li>
+                    <li><a {% ifequal  request.path '/system_manage/' %} class=selected {% endifequal %} id="/system_manage/" href="/system_manage/">مدیریت سیستم</a></li> 
+                    <li><a {% ifequal request.path '/reports/' %} class=selected {% endifequal %} id="/reports/" href="/reports/">گزارش ها</a></li>
+                    <li><a {% ifequal request.path '/services/' %} class=selected {% endifequal %} id="/services/" href="/services/">سرویس ها</a></li>
+                    <li><a {% ifequal request.path '/' %} class=selected {% endifequal %} id="index" href="/?">صفحه اصلی</a></li>
 				</ul>
 		  </div>
     <div class="scroll">
@@ -64,5 +64,7 @@
     	<!-- Copyright © 2013 <a href="#">Parspooyesh</a> -->
     </div>
 </div>
+<div id="selected_page_link_id" style="display:none;">{{request.path}}</div>
+<script src="/static/js/adds_scripts.js" type="text/javascript"></script>
 </body>
 </html>

@@ -7,6 +7,9 @@ from django.template import RequestContext
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponseRedirect
 
+
+
+
 def index(request):
 	if request.user.is_authenticated():
 		name = 'نام کاربری: '
@@ -14,8 +17,18 @@ def index(request):
 		page_html_inc = 'home.html' 
 		return render_to_response('index.html', locals(),context_instance=RequestContext(request) )
 	else:
-		return HttpResponseRedirect('/login/')  
+		return HttpResponseRedirect('/login_user/')  
+	
 
+def system_manage(request):
+	if request.user.is_authenticated():
+		name = 'نام کاربری: '
+		name += str(request.user)
+		page_html_inc = 'system_manage.html' 
+		return render_to_response('index.html', locals(),context_instance=RequestContext(request) )
+	else:
+		return HttpResponseRedirect('/login_user/')  
+	
 def login_user(request):
     username = password = ''
     page_html_inc = 'login.html' 
@@ -28,10 +41,10 @@ def login_user(request):
 				login(request, user)
 				return HttpResponseRedirect('/')  
             else:
-                error = "نام کاربری شما فعال نیست "
+                error = "نام کاربری شما فعال نیست"
         else:
             error = "نام کاربری و یا رمز عبور صحیح نیست"
-	#test dfdfdf d fd asxaxas
+
     return render_to_response('index.html', locals() ,context_instance=RequestContext(request))
 		
 def services(request):
