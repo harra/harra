@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login , logout
 from django.template import RequestContext
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponseRedirect
-
+from forms import *
 
 
 
@@ -48,8 +48,9 @@ def login_user(request):
     return render_to_response('index.html', locals() ,context_instance=RequestContext(request))
 		
 def services(request):
-    page_html_inc = 'services.html' 
-    return render_to_response('index.html', locals() ,context_instance=RequestContext(request))
+	add_category_form_content = AddCategory()
+	page_html_inc = 'services.html'
+	return render_to_response('index.html', locals() ,context_instance=RequestContext(request))
 		
 def reports(request):
     page_html_inc = 'reports.html' 

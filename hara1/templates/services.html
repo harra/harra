@@ -13,17 +13,14 @@
 			</ul>
 		</div>
 	</div>
+{# ifequal request.GET.p 'add_category' #}
 	<div align=right style="width:640px;height:200px;padding:10px 10px ;float:left;">
-		تست لينک اول	تست لينک اول	تست لينک اول	تست لينک اول	تست لينک اول	تست لينک اول	تست لينک اول	تست لينک اول	تست لينک اول	تست لينک اول	تست لينک اول	تست لينک اول	تست لينک اول	تست لينک اول	تست لينک اول	تست لينک اول	تست لينک اول	تست لينک اول
-		<br>
-		
-		تست لينک دوم
-		<br>
-		تست لينک سوم
-		<br>
-		تست لينک چهارم
-		<br>
-		
-
+		<!-- {{ add_category_form_content }}	 -->
+			<table style="font-family:BKoodakBold;font-weight:normal;text-decoration: none;" >
+				{% for field in add_category_form_content %}
+					<tr><td>{{ field.label }} : </td><td>{{ field }}</td> </tr>
+				{% endfor %}
+			</table>
 	</div>
+{# endifequal #}
 </div>
