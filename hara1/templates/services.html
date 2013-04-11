@@ -15,7 +15,6 @@
 	</div>
 {# ifequal request.GET.p 'add_category' #}
 	<div align=right style="width:640px;height:200px;padding:10px 10px ;float:left;">
-		<!-- {{ add_category_form_content }}	 -->
 			<table style="font-family:BKoodakBold;font-weight:normal;text-decoration: none;" >
 				{% for field in add_category_form_content %}
 					<tr><td>{{ field.label }} : </td><td>{{ field }}</td> </tr>
