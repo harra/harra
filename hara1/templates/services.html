@@ -13,13 +13,30 @@
 			</ul>
 		</div>
 	</div>
-{# ifequal request.GET.p 'add_category' #}
-	<div align=right style="width:640px;height:200px;padding:10px 10px ;float:left;">
-			<table style="font-family:BKoodakBold;font-weight:normal;text-decoration: none;" >
-				{% for field in add_category_form_content %}
-					<tr><td>{{ field.label }} : </td><td>{{ field }}</td> </tr>
-				{% endfor %}
-			</table>
-	</div>
-{# endifequal #}
+	
+	
+{% if add_category_success %}
+	{{ added_category_id }}
+
+{% endif %}
+
+{% ifequal request.GET.p 'add_category' %}
+	
+	{% if 'error' in request.GET %}
+		<div align=center style="color:red;"><b>اطلاعات صحیح نیست</b></div>
+		<script>setTimeout('history.back();', 2000);</script>
+	{% else %}
+		<div align=right style="width:640px;height:200px;padding:10px 10px ;float:left;">
+			<form action="/services/" method=POST>{% csrf_token %}
+				<table style="font-family:BKoodakBold;font-weight:normal;text-decoration: none;" >
+						<input type=hidden name="p" value="add_category_save" >
+						{% for field in add_category_form_content %}
+							<tr><td>{{ field.label }} : </td><td>{{ field }}</td> </tr>
+						{% endfor %}
+				</table>
+				<input type=submit name=add_category value=save >
+			</form>
+		</div>
+	{% endif %}
+{% endifequal %}
 </div>

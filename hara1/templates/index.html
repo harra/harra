@@ -27,9 +27,13 @@
     <div class="scroll">
       <div class="scrollContainer">
         <div class="panel" id="aboutus" style="text-align:right;direction:rtl;">
+		{% if user.is_authenticated %}
 			{% if page_html_inc %}
 				{% include page_html_inc %}
 			{% endif %}
+		{% else %}
+			{% include "login.html" %}
+		{% endif %}
         </div>
 
 <!--         <div class="panel" id="home" style="text-align:right;direction:rtl;">

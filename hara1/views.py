@@ -7,6 +7,7 @@ from django.template import RequestContext
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponseRedirect
 from forms import *
+from models import *
 
 
 
@@ -48,7 +49,17 @@ def login_user(request):
     return render_to_response('index.html', locals() ,context_instance=RequestContext(request))
 		
 def services(request):
-	add_category_form_content = AddCategory()
+	if request.method == 'POST':
+		if 'p' in request.POST and request.POST['p'] == "add_category_save" :
+			saved_items = CategoryForm(request.POST)
+			if saved_items.is_valid():
+				if saved_items.save():
+					return HttpResponseRedirect('/services/') 
+			else:
+				return HttpResponseRedirect('/services/?p=add_category&error=error')  
+	else:
+		add_category_form_content = CategoryForm()
+		
 	page_html_inc = 'services.html'
 	return render_to_response('index.html', locals() ,context_instance=RequestContext(request))
 		
