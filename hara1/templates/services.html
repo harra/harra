@@ -14,38 +14,47 @@
 		</div>
 	</div>
 
-
-{% ifequal request.GET.p 'add_category' %}
-	
-	{% if 'error' in request.GET %}
-		<div align=center style="color:red;"><b>اطلاعات صحیح نیست</b></div>
-		<script>setTimeout('history.back();', 2000);</script>
+<div align=right style="width:640px;height:200px;padding:10px 10px ;float:left;">
+	{% ifequal request.GET.p 'add_category' %}
+		
+		{% if 'error' in request.GET %}
+			<div align=center style="color:red;"><b>اطلاعات صحیح نیست/تکراری است</b></div>
+			<script>setTimeout('history.back();', 2000);</script>
+		{% else %}
+				<form action="/services/" method=POST>{% csrf_token %}
+					<table style="font-family:BKoodakBold;font-weight:normal;text-decoration: none;" >
+							<input type=hidden name="p" value="add_category_save" >
+							{% for field in add_category_form_content %}
+								<tr><td>{{ field.label }} : </td><td>{{ field }}</td> </tr>
+							{% endfor %}
+					</table>
+					<input type=submit name=add_category value=save >
+				</form>
+		{% endif %}
 	{% else %}
-		<div align=right style="width:640px;height:200px;padding:10px 10px ;float:left;">
-			<form action="/services/" method=POST>{% csrf_token %}
-				<table style="font-family:BKoodakBold;font-weight:normal;text-decoration: none;" >
-						<input type=hidden name="p" value="add_category_save" >
-						{% for field in add_category_form_content %}
-							<tr><td>{{ field.label }} : </td><td>{{ field }}</td> </tr>
-						{% endfor %}
-				</table>
-				<input type=submit name=add_category value=save >
-			</form>
-		</div>
-	{% endif %}
-{% else %}
 
 
+	<table width=100% style="text-align:center">
+	<tr style="background-color:#00539C;color:white;font-weight:bold;font-family:BYekan">
+		<td align=center>ID</td>
+		<td>دسته بندی</td>
+		<td>کلید عضویت</td>
+		<td>گروه</td>
+		<td>زیر مجموعه</td>
+		<td>فعال</td>
+		<td></td>
+	</tr>
+	{% for category_tr in CATS %}  
+		<tr style="background-color:#FFF2FC;">
+		{% for category_td in category_tr %}  
+			<td>{{category_td|safe}}</td>
+		{% endfor %}
+		</tr>
+	{% endfor %}	
 
-{% for category_tr in categories %}  
-	<br>
-	{% for category_td in category_tr %}  
-		{{category_td}} -- 
-	{% endfor %}
-{% endfor %}	
-{% endifequal %}
-
-
+	</table>
+	{% endifequal %}
+</div>
 
 <!-- {{show_list_category}}
 {% ifequal show_list_category 'true' %}

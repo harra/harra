@@ -61,18 +61,30 @@ def services(request):
 	else:
 		page_title = 'مدیریت دسته بندی ها'
 		add_category_form_content = CategoryForm()
-	if request.method != 'POST' and request.method != 'GET':
-		show_list_category = 'true'
-	else:
-		show_list_category = 'false'
+
+		if 'p' in request.GET and request.GET['p'] == "delete_category" :
+			cat_del_id = request.GET['category_id']
+			cat_del = CategoryList.objects.get(id=cat_del_id)
+			cat_del.delete()
+			return HttpResponseRedirect('/services/') 
+
 	page_html_inc = 'services.html'
 
-	data = GetCategories.objects.values(u'id', u'name', u'subscribe_key')
-	categories =list( data )
-	# categories =list( GetCategories.objects.all() )
-	# for e in GetCategories.objects.all():
-		# namew = e.name
-
+	 
+	CATS = []
+	for cat in Category.objects.all().order_by('-id'):
+		group_name = CategoryParents.objects.filter(id=cat.group_id)
+		if cat.parent_id > 0 :
+			parent_name = CategoryList.objects.filter(id=cat.parent_id)[0]
+		else:
+			parent_name = '----'
+		delete_icon = "<a href='#' class='delete_category' cat_id='%(cat_id)s' cat_name='%(cat_name)s' ><img src='/static/images/delete.png'></a>" % {'cat_id':cat.id ,'cat_name':cat.name , }
+		edite_icon = "<a href='' ><img src='/static/images/edite.png'></a>"
+		if cat.enable =='1':
+			enable_icon = "<img src='/static/images/tick.png'>"
+		else:
+			enable_icon = "<img src='/static/images/disable.png'>"
+		CATS.append((cat.id,cat.name,cat.subscribe_key,group_name[0],parent_name,enable_icon,delete_icon+'&nbsp;&nbsp;'+edite_icon))
 	return render_to_response('index.html', locals() ,context_instance=RequestContext(request))
 		
 def reports(request):
