@@ -58,8 +58,12 @@ def services(request):
 			else:
 				return HttpResponseRedirect('/services/?p=add_category&error=error')  
 	else:
+		page_title = 'مدیریت دسته بندی ها'
 		add_category_form_content = CategoryForm()
-		
+	if request.method != 'POST' and request.method != 'GET':
+		show_list_category = 'true'
+	else:
+		show_list_category = 'false'
 	page_html_inc = 'services.html'
 	return render_to_response('index.html', locals() ,context_instance=RequestContext(request))
 		

@@ -1,4 +1,4 @@
-<h2 style="font-family:BYekan;">سرویس ها</h2>
+<h2 style="font-family:BYekan;">{{ page_title }}</h2>
 <div align=left>
 	<div align=right style="width:190px;height:200px;padding:10px 10px ;float:left;">
 		<b>لیست سرویس ها</b>
@@ -13,12 +13,7 @@
 			</ul>
 		</div>
 	</div>
-	
-	
-{% if add_category_success %}
-	{{ added_category_id }}
 
-{% endif %}
 
 {% ifequal request.GET.p 'add_category' %}
 	
@@ -38,5 +33,11 @@
 			</form>
 		</div>
 	{% endif %}
+{% endifequal %}
+
+{{show_list_category}}
+{% ifequal show_list_category 'true' %}
+	emptyyyyyyyyyyyyy
+
 {% endifequal %}
 </div>
