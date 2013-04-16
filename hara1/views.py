@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponseRedirect
 from forms import *
 from models import *
+from query import *
 
 
 
@@ -65,6 +66,13 @@ def services(request):
 	else:
 		show_list_category = 'false'
 	page_html_inc = 'services.html'
+
+	data = GetCategories.objects.values(u'id', u'name', u'subscribe_key')
+	categories =list( data )
+	# categories =list( GetCategories.objects.all() )
+	# for e in GetCategories.objects.all():
+		# namew = e.name
+
 	return render_to_response('index.html', locals() ,context_instance=RequestContext(request))
 		
 def reports(request):

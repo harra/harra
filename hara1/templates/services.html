@@ -33,11 +33,23 @@
 			</form>
 		</div>
 	{% endif %}
+{% else %}
+
+
+
+{% for category_tr in categories %}  
+	<br>
+	{% for category_td in category_tr %}  
+		{{category_td}} -- 
+	{% endfor %}
+{% endfor %}	
 {% endifequal %}
 
-{{show_list_category}}
+
+
+<!-- {{show_list_category}}
 {% ifequal show_list_category 'true' %}
 	emptyyyyyyyyyyyyy
 
-{% endifequal %}
+{% endifequal %} -->
 </div>
